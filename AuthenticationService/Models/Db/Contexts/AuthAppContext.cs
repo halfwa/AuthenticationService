@@ -8,7 +8,7 @@ namespace AuthenticationService.Models.Db.Contexts
         public AuthAppContext(DbContextOptions<AuthAppContext> options)
             : base(options)
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
     }

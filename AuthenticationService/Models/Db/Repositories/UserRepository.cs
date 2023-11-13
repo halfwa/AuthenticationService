@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AuthenticationService.Models.Db.Contexts;
 
 namespace AuthenticationService.Models.Db.Repositories
@@ -9,16 +10,17 @@ namespace AuthenticationService.Models.Db.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly AuthAppContext _context;
-        public UserRepository(
-            AuthAppContext context
-            )
+        public UserRepository(AuthAppContext context) => _context = context;
+
+        public async Task Add(User user)
         {
-           _context = context;
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
         }
+
         public IEnumerable<User> GetAll()
         {
-           var users = _context.Users.ToList();
-           return users;
+           return _context.Users.ToList();
         }
 
         public User GetByLogin(string login)
@@ -28,11 +30,12 @@ namespace AuthenticationService.Models.Db.Repositories
 
             return user;
         }
+
     }
     public interface IUserRepository
     {
         IEnumerable<User> GetAll();
         User GetByLogin(string login);
-
+        Task Add(User user);
     }
 }
