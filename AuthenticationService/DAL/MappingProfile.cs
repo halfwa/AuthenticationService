@@ -1,4 +1,5 @@
-﻿using AuthenticationService.Models.Db;
+﻿using AuthenticationService.Models;
+using AuthenticationService.Models.Db;
 using AutoMapper;
 
 namespace AuthenticationService

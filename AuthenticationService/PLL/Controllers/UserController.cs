@@ -1,4 +1,6 @@
-﻿using AuthenticationService.Models.Db;
+﻿using AuthenticationService.Exceptions;
+using AuthenticationService.Models;
+using AuthenticationService.Models.Db;
 using AuthenticationService.Models.Db.Repositories;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication;
@@ -14,6 +16,7 @@ using System.Threading.Tasks;
 
 namespace AuthenticationService.Controllers
 {
+    [ExceptionHandler]
     [ApiController]
     [Route("[controller]")]
     public class UserController : ControllerBase
@@ -48,9 +51,9 @@ namespace AuthenticationService.Controllers
                 Password = "11112222",
                 Login = "Kobratate"
             };
-        }
+        }   
 
-        [Authorize]
+        [Authorize(Roles = "Администратор")]
         [HttpGet]   
         [Route("viewmodel")]
         public UserViewModel GetUserViewModelAsync()
@@ -73,10 +76,10 @@ namespace AuthenticationService.Controllers
 
         [HttpGet]
         [Route("authenticate")]
-        public async Task<UserViewModel> Authenticate(string login, string password)
+        public async  Task<UserViewModel> Authenticate(string login, string password)
         {
-            if (string.IsNullOrEmpty(login) ||
-                string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(login) 
+                || string.IsNullOrEmpty(password))
             {
                 throw new ArgumentNullException("Запрос не корректтен");
             }
@@ -94,7 +97,8 @@ namespace AuthenticationService.Controllers
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login)
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login),
+                new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role.Name)
             };
 
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(
@@ -104,7 +108,7 @@ namespace AuthenticationService.Controllers
                 ClaimsIdentity.DefaultRoleClaimType);
 
             await HttpContext.SignInAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme, 
+                CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity));
 
             return _mapper.Map<UserViewModel>(user);

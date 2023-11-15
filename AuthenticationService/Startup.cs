@@ -1,3 +1,4 @@
+using AuthenticationService.Middlewares;
 using AuthenticationService.Models.Db.Contexts;
 using AuthenticationService.Models.Db.Repositories;
 using AutoMapper;
@@ -35,7 +36,6 @@ namespace AuthenticationService
                 options.UseSqlServer(connection), ServiceLifetime.Singleton);
 
             services.AddSingleton<IUserRepository, UserRepository>();
-
             services.AddSingleton<ILogger, Logger>();
 
             var mapperConfig = new MapperConfiguration(v =>
@@ -80,6 +80,8 @@ namespace AuthenticationService
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseLogMiddleware();
 
             app.UseEndpoints(endpoints =>
             {
