@@ -1,7 +1,8 @@
-﻿using AuthenticationService.Exceptions;
+﻿using AuthenticationService.BLL.Models;
+using AuthenticationService.DAL.Repositories;
+using AuthenticationService.Exceptions;
 using AuthenticationService.Models;
-using AuthenticationService.Models.Db;
-using AuthenticationService.Models.Db.Repositories;
+using AuthenticationService.PLL;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;

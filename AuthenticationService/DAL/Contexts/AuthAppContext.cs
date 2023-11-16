@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AuthenticationService.BLL.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace AuthenticationService.Models.Db.Contexts
+namespace AuthenticationService.DAL.Contexts
 {
-    public sealed class AuthAppContext: DbContext
+    public sealed class AuthAppContext : DbContext
     {
         public DbSet<User> Users { get; set; }
         public AuthAppContext(DbContextOptions<AuthAppContext> options)

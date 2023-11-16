@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace AuthenticationService.Middlewares
+namespace AuthenticationService.PLL.Middlewares
 {
     public class LogMiddleware
     {
@@ -12,7 +12,7 @@ namespace AuthenticationService.Middlewares
         public LogMiddleware(RequestDelegate next, ILogger logger)
         {
             _next = next;
-            _logger = logger;   
+            _logger = logger;
         }
 
         public async Task Invoke(HttpContext httpContext)

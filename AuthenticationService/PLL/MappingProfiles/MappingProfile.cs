@@ -1,10 +1,10 @@
-﻿using AuthenticationService.Models;
-using AuthenticationService.Models.Db;
+﻿using AuthenticationService.BLL.Models;
+using AuthenticationService.Models;
 using AutoMapper;
 
-namespace AuthenticationService
+namespace AuthenticationService.PLL.MappingProfiles
 {
-    public class MappingProfile: Profile
+    public class MappingProfile : Profile
     {
         public MappingProfile()
         {

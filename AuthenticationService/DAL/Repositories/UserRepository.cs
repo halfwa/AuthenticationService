@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AuthenticationService.BLL.Models;
+using AuthenticationService.Models;
 using AuthenticationService.Models.Db.Contexts;
 
-namespace AuthenticationService.Models.Db.Repositories
+namespace AuthenticationService.DAL.Repositories
 {
     public class UserRepository : IUserRepository
     {
@@ -24,9 +26,9 @@ namespace AuthenticationService.Models.Db.Repositories
                 Role = new Role()
                 {
                     Id = 1,
-                        Name = "Пользователь"
+                    Name = "Пользователь"
                 }
-            });     
+            });
 
             _users.Add(new User()
             {
@@ -61,7 +63,7 @@ namespace AuthenticationService.Models.Db.Repositories
 
         public IEnumerable<User> GetAll()
         {
-           return _users;
+            return _users;
         }
 
         public User GetByLogin(string login)

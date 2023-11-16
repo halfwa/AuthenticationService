@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AuthenticationService.Models.Db
+namespace AuthenticationService.BLL.Models
 {
     public class User
     {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Net.Mail;
 
-namespace AuthenticationService.Models.Db
+namespace AuthenticationService.BLL.Models
 {
     public class UserViewModel
     {

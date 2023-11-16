@@ -1,6 +1,7 @@
-using AuthenticationService.Middlewares;
-using AuthenticationService.Models.Db.Contexts;
-using AuthenticationService.Models.Db.Repositories;
+using AuthenticationService.DAL.Contexts;
+using AuthenticationService.DAL.Repositories;
+using AuthenticationService.PLL;
+using AuthenticationService.PLL.Middlewares;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
